@@ -620,4 +620,9 @@ class BitcoinConnection(object):
         - *address* -- Bitcoin address whose private key should be returned.
         """
         return self.proxy.dumpprivkey(address)
-        
+
+    def listaddressgroupings(self):
+        """
+        Returns a list of addresses that can be grouped by public transactions.
+        """
+        return self.proxy.listaddressgroupings()

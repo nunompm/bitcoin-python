@@ -53,6 +53,7 @@ if __name__ == "__main__":
         assert(x.isvalid == True)
         x = conn.validateaddress("invalid")
         assert(x.isvalid == False)
+        conn.listaddressgroupings()
 
         for accid in conn.listaccounts(as_dict=True).iterkeys():
           tx = conn.listtransactions(accid)
