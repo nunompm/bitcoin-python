@@ -626,3 +626,9 @@ class BitcoinConnection(object):
         Returns a list of addresses that can be grouped by public transactions.
         """
         return self.proxy.listaddressgroupings()
+
+    def getpeerinfo(self):
+        """
+        Returns a list of peers.
+        """
+        return self.proxy.getpeerinfo()

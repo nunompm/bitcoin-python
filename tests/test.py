@@ -54,6 +54,7 @@ if __name__ == "__main__":
         x = conn.validateaddress("invalid")
         assert(x.isvalid == False)
         conn.listaddressgroupings()
+        conn.getpeerinfo()
 
         for accid in conn.listaccounts(as_dict=True).iterkeys():
           tx = conn.listtransactions(accid)
