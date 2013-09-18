@@ -632,3 +632,9 @@ class BitcoinConnection(object):
         Returns a list of peers.
         """
         return self.proxy.getpeerinfo()
+
+    def help(self):
+        """
+        Returns the help
+        """
+        return self.proxy.help()
