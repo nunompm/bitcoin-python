@@ -638,3 +638,11 @@ class BitcoinConnection(object):
         Returns the help
         """
         return self.proxy.help()
+
+    def signmessage(self, address, message):
+        r = self.proxy.signmessage(address, message)
+        return r
+
+    def encryptwallet(self, passphrase):
+        r = self.proxy.encryptwallet(passphrase)
+        return r

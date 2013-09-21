@@ -56,6 +56,7 @@ if __name__ == "__main__":
         conn.listaddressgroupings()
         conn.getpeerinfo()
         conn.help()
+        #conn.encryptwallet()  # Probably need testnet in a box or somesuch
 
         for accid in conn.listaccounts(as_dict=True).iterkeys():
           tx = conn.listtransactions(accid)
