@@ -646,3 +646,7 @@ class BitcoinConnection(object):
     def encryptwallet(self, passphrase):
         r = self.proxy.encryptwallet(passphrase)
         return r
+
+    def settxfee(self, fee):
+        r = self.proxy.settxfee(str(fee))
+        return r
