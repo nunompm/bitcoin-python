@@ -648,5 +648,5 @@ class BitcoinConnection(object):
         return r
 
     def settxfee(self, fee):
-        r = self.proxy.settxfee(str(fee))
+        r = self.proxy.settxfee(fee)
         return r
