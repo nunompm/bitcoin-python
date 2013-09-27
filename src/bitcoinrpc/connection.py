@@ -620,4 +620,9 @@ class BitcoinConnection(object):
         - *address* -- Bitcoin address whose private key should be returned.
         """
         return self.proxy.dumpprivkey(address)
-        
+
+    def getpeerinfo(self):
+        """
+        Returns a list of peers.
+        """
+        return self.proxy.getpeerinfo()
