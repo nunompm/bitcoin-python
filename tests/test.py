@@ -4,6 +4,7 @@ Test script
 Only on the test network.
 '''
 import argparse
+import os
 import sys
 sys.path.append('../src')
 
@@ -18,28 +19,42 @@ parser.add_argument('--nolocal', help="Don't use connect_to_local",
                     action='store_true')
 parser.add_argument('--noremote', help="Don't use connect_to_remote",
                     action='store_true')
+parser.add_argument('--envbox',
+                    help="Use testnet box configured through env vars",
+                    action='store_true')
 args = parser.parse_args()
 
 if __name__ == "__main__":
-
-    if args.config:
-        from bitcoinrpc.config import read_config_file
-        cfg = read_config_file(args.config)
-    else:
-        from bitcoinrpc.config import read_default_config
-        cfg = read_default_config(None)
-    port = int(cfg.get('rpcport', '18332' if cfg.get('testnet') else '8332'))
-    rpcuser = cfg.get('rpcuser', '')
-
     connections = []
-    if not args.nolocal:
-        local_conn = bitcoinrpc.connect_to_local()  # will use read_default_config
-        connections.append(local_conn)
-    if not args.noremote:
-        remote_conn = bitcoinrpc.connect_to_remote(
-                user=rpcuser, password=cfg['rpcpassword'], host='localhost',
-                port=port, use_https=False)
-        connections.append(remote_conn)
+    if args.envbox:
+        host = os.environ['HOST']
+        passwd = os.environ['PASS']
+        user1 = os.environ['USER1']
+        user2 = os.environ['USER2']
+        port1 = int(os.environ['PORT1'])
+        port2 = int(os.environ['PORT2'])
+        conn1 = bitcoinrpc.connect_to_remote(user=user1, password=passwd,
+                                        host=host, port=port1, use_https=False)
+        connections.append(conn1)
+        # TODO connect to second box to send coins back and forth
+    else:
+        if args.config:
+            from bitcoinrpc.config import read_config_file
+            cfg = read_config_file(args.config)
+        else:
+            from bitcoinrpc.config import read_default_config
+            cfg = read_default_config(None)
+        port = int(cfg.get('rpcport', '18332' if cfg.get('testnet') else '8332'))
+        rpcuser = cfg.get('rpcuser', '')
+
+        if not args.nolocal:
+            local_conn = bitcoinrpc.connect_to_local()  # will use read_default_config
+            connections.append(local_conn)
+        if not args.noremote:
+            remote_conn = bitcoinrpc.connect_to_remote(
+                    user=rpcuser, password=cfg['rpcpassword'], host='localhost',
+                    port=port, use_https=False)
+            connections.append(remote_conn)
 
     for conn in connections:
         assert(conn.getinfo().testnet) # don't test on prodnet
