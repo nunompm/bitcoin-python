@@ -1,0 +1,28 @@
+language: python
+python:
+#- 2.5
+- 2.6
+- 2.7
+#- 3.3
+env:
+  global:
+  - secure: WOZyBOsnTgfJ8TtSp8XVFSbPEXrT370cxzonL8hu70Rf5TdzdCLAEgBxSuzddQtycWAKZmwukcWHqQjuteI4xkK7Lwzp694/Uh/hspVn3jbyBbl2IKLzbLowhD6tanaAD398YOQRxW4ivDGAuqhjUWAkzx8h4XH92p9Q4tjry4o=
+  - secure: nefL0xaTngXYBSf3J1ZLEg81vfT+sqVXQ8BrduanoAjdBZSf0c3u44VvH28TD7J8CjyZRBUBTZGTwfE10+NDGtF5A/FkOH5XE52Lx1cEsjvyJjIgg2tkojWW9a6c2+9BFal6Pebk4/yxUDK8OsmRyW3BXysKdlALA3ckmEOpf/E=
+  - secure: devpsGKgB9siehsVZv3HAlDbAJcAmZUvYWTM0+2AyK8x8FgcwOkh6jXcg0m+JKirI5vXsksxfnbSs6dlgUB1Rd6NAYEMd0QSuCi60OnY3NOkl8vZTxPrJn0aZ0zQaxQ8rmt33WIbXamG8jytGpBHNewMsLRntDDTSBQ07jnFNMk=
+  - secure: XOtyjmhDJPIpMGEF4z+vCcEHdWArPjLODfWraaiDbsCosVFvtD6dKILTzvouyVD9GRvqWmpSx5SCLKauSOAgDmFv3OMQRcw6MiISI4Nx/2TaY+EPVxeJbUULHRpkaSW+JEm/+KbnM9/X8cCQDgMD7mS+oQ2zy281TyzRFrg/MOE=
+  - secure: Q0jjXFMv00eJAQU4V97YkfwkhFW3pu/xe12pkVcfszdfMIEswVmNbnk1PR6Qdp8MEtcX7wEPx4EnkIFPh7cLHJNBAQHJfqDvUN64KYaTrU2YLVUbkyi5ENj8OmHSDLmJ7Ws8tDayWM6iPEvWCvj7KnJ+7RQ8oWz6cHlolfQt21s=
+  - secure: ePZz1JGFkOr4J/98+opi4Mzjva3TIkQSZtaCKZNDo0TvrXCncVFIjl0aiAkMyTPt8Mvh1HGp8/tPw5QJX3HbJQNmGmMFADR1wrMmbk9Qg9W3zq7a0qT9Poogm1Ij1x2kghnrO4QaZ0QjM9flIalqhRByS8fYTOB1Hwek3GRJm7I=
+install:
+  - if [[ $TRAVIS_PYTHON_VERSION < '2.7' ]]; then pip install -q --use-mirrors argparse; fi
+  - python setup.py install -q
+script: python tests/test.py --envconfig
+notifications:
+  irc:
+    skip_join: true
+    on_success: change
+    on_failure: change
+    channels:
+    - irc.freenode.org##nkuttler
+  email:
+    on_success: never
+    on_failure: change
