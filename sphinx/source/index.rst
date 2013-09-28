@@ -12,6 +12,7 @@ Contents:
 
    gettingstarted.rst
    apireference.rst
+   testing.rst
 
 Indices and tables
 ==================
