@@ -1,6 +1,10 @@
 language: python
 python:
+- 2.5
+- 2.6
 - 2.7
+- 3.3
+- 3.4
 env:
   global:
   - secure: WOZyBOsnTgfJ8TtSp8XVFSbPEXrT370cxzonL8hu70Rf5TdzdCLAEgBxSuzddQtycWAKZmwukcWHqQjuteI4xkK7Lwzp694/Uh/hspVn3jbyBbl2IKLzbLowhD6tanaAD398YOQRxW4ivDGAuqhjUWAkzx8h4XH92p9Q4tjry4o=
