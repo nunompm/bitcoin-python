@@ -3,8 +3,7 @@ python:
 - 2.5
 - 2.6
 - 2.7
-- 3.3
-- 3.4
+#- 3.3
 env:
   global:
   - secure: WOZyBOsnTgfJ8TtSp8XVFSbPEXrT370cxzonL8hu70Rf5TdzdCLAEgBxSuzddQtycWAKZmwukcWHqQjuteI4xkK7Lwzp694/Uh/hspVn3jbyBbl2IKLzbLowhD6tanaAD398YOQRxW4ivDGAuqhjUWAkzx8h4XH92p9Q4tjry4o=
@@ -14,6 +13,7 @@ env:
   - secure: Q0jjXFMv00eJAQU4V97YkfwkhFW3pu/xe12pkVcfszdfMIEswVmNbnk1PR6Qdp8MEtcX7wEPx4EnkIFPh7cLHJNBAQHJfqDvUN64KYaTrU2YLVUbkyi5ENj8OmHSDLmJ7Ws8tDayWM6iPEvWCvj7KnJ+7RQ8oWz6cHlolfQt21s=
   - secure: ePZz1JGFkOr4J/98+opi4Mzjva3TIkQSZtaCKZNDo0TvrXCncVFIjl0aiAkMyTPt8Mvh1HGp8/tPw5QJX3HbJQNmGmMFADR1wrMmbk9Qg9W3zq7a0qT9Poogm1Ij1x2kghnrO4QaZ0QjM9flIalqhRByS8fYTOB1Hwek3GRJm7I=
 install:
+- if [[ $TRAVIS_PYTHON_VERSION < '2.7' ]]; then pip install -q --use-mirrors argparse; fi
 - python setup.py install -q
 script: python tests/test.py --envbox
 notifications:
