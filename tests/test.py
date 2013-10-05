@@ -105,7 +105,7 @@ if __name__ == "__main__":
         x = conn.validateaddress("invalid")
         assert(x.isvalid == False)
 
-        for accid in conn.listaccounts(as_dict=True).iterkeys():
+        for accid in conn.listaccounts(as_dict=True).keys():
           tx = conn.listtransactions(accid)
           if len(tx) > 0:
             txid = tx[0].txid
@@ -115,13 +115,13 @@ if __name__ == "__main__":
         assert(type(conn.listunspent()) is list)  # needs better testing
 
     info = conn.getinfo()
-    print "Blocks: %i" % info.blocks
-    print "Connections: %i" % info.connections
-    print "Difficulty: %f" % info.difficulty
+    print("Blocks: %i" % info.blocks)
+    print("Connections: %i" % info.connections)
+    print("Difficulty: %f" % info.difficulty)
 
     m_info = conn.getmininginfo()
-    print ("Pooled Transactions: {pooledtx}\n"
+    print(("Pooled Transactions: {pooledtx}\n"
            "Testnet: {testnet}\n"
            "Hash Rate: {hashes} H/s".format(pooledtx=m_info.pooledtx,
                                             testnet=m_info.testnet,
-                                            hashes=m_info.hashespersec))
+                                            hashes=m_info.hashespersec)))
