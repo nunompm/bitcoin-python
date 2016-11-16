@@ -247,8 +247,8 @@ class BitcoinConnection(object):
         """
         Returns an :class:`~bitcoinrpc.data.ServerInfo` object containing various state info.
         """
-        return AssetInfo(**self.proxy.listassets())
-
+        return self.proxy.listassets()
+      
     def gettransaction(self, txid):
         """
         Get detailed information about transaction
