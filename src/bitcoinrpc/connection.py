@@ -242,6 +242,12 @@ class BitcoinConnection(object):
 
         """
         return self.proxy.getreceivedbyaccount(account, minconf)
+      
+    def listassets(self):
+        """
+        Returns an :class:`~bitcoinrpc.data.ServerInfo` object containing various state info.
+        """
+        return AssetInfo(**self.proxy.listassets())
 
     def gettransaction(self, txid):
         """
