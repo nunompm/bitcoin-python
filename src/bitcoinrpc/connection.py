@@ -245,7 +245,7 @@ class BitcoinConnection(object):
       
     def listassets(self):
         """
-        Returns an :class:`~bitcoinrpc.data.ServerInfo` object containing various state info.
+        Returns the list of assets created
         """
         return self.proxy.listassets()
       
