@@ -22,7 +22,20 @@ Bitcoin RPC service, data objects.
 """
 from bitcoinrpc.util import DStruct
 
+class AssetInfo(DStruct):
+    
+     """
+    Information object returned by :func:`~bitcoinrpc.connection.BitcoinConnection.listassetst`.
 
+    - *name* -- The name of the asset.
+
+    - *issuetxid* -- Asset issuetxid.
+
+    - *units* -- Number of units.
+
+    """
+    
+    
 class ServerInfo(DStruct):
     """
     Information object returned by :func:`~bitcoinrpc.connection.BitcoinConnection.getinfo`.
