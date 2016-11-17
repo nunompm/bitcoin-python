@@ -628,3 +628,9 @@ class BitcoinConnection(object):
         """
         return self.proxy.dumpprivkey(address)
         
+    def getaddresses(self):
+        """
+        Returns a list of the addresses in this node
+
+        """
+        return self.proxy.getaddresses()
