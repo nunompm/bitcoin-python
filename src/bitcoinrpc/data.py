@@ -25,7 +25,7 @@ from bitcoinrpc.util import DStruct
 class AssetInfo(DStruct):
     
     """
-    Information object returned by :func:`~bitcoinrpc.connection.BitcoinConnection.listassetst`.
+    Information object returned by :func:`~bitcoinrpc.connection.BitcoinConnection.listassets`.
 
     - *name* -- The name of the asset.
 

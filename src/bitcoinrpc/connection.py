@@ -25,7 +25,7 @@ from bitcoinrpc.exceptions import (wrap_exception, BitcoinException,
                                    WalletPassphraseIncorrect,
                                    WalletAlreadyUnlocked)
 from bitcoinrpc.data import (ServerInfo, AccountInfo, AddressInfo, TransactionInfo,
-                             AddressValidation, WorkItem, MiningInfo)
+                             AddressValidation, WorkItem, MiningInfo, AssetInfo)
 
 
 class BitcoinConnection(object):
