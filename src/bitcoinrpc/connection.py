@@ -247,7 +247,8 @@ class BitcoinConnection(object):
         """
         Returns the list of assets created
         """
-        return self.proxy.listassets()
+        return [AssetInfo(**x) for x in 
+                self.proxy.listassets()]
       
     def gettransaction(self, txid):
         """
