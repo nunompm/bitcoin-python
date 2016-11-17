@@ -243,13 +243,6 @@ class BitcoinConnection(object):
         """
         return self.proxy.getreceivedbyaccount(account, minconf)
       
-    def listassets(self):
-        """
-        Returns the list of assets created
-        """
-        return [AssetInfo(**x) for x in 
-                self.proxy.listassets()]
-      
     def gettransaction(self, txid):
         """
         Get detailed information about transaction
@@ -628,6 +621,69 @@ class BitcoinConnection(object):
         """
         return self.proxy.dumpprivkey(address)
         
+
+# Multichain Asset management
+    
+    def issue(self, address, name, qty=0, data=None):
+        """
+        Create and issue asset qty
+        """
+        asset = {}
+        asset["name"] = name
+        asset["open"] = True 
+        units=1 
+        min_nat=0
+        if data is None:
+            return self.proxy.issue(address, asset, qty)
+        else:
+            return self.proxy.issue(address, asset, qty, units, min_nat, data)
+        
+        
+    def issuemore(self, address, asset, qty, data=None):
+        """
+        Issue more asset qty
+        """
+        min_nat=0
+        if data is None:
+            return self.proxy.issuemore(address, asset, qty)
+        else:
+            return self.proxy.issuemore(address, asset, qty, min_nat, data )
+        
+        
+    def issuefrom(self, from_addr, to_addr, name, qty=0, data=None):
+        """
+        Create asset from specified address
+        """
+        asset = {}
+        asset["name"] = name
+        asset["open"] = True 
+        units=1 
+        min_nat=0
+        if data is None:
+            return self.proxy.issuefrom(from_addr, to_addr, asset, qty)
+        else:
+            return self.proxy.issuefrom(from_addr, to_addr, asset, qty, units, min_nat, data)
+        
+    def issuemorefrom(self,from_addr, to_addr, asset, qty, data=None):
+        """
+        Issue more asset qty
+        """
+        min_nat=0
+        if data is None:
+            return self.proxy.issuemorefrom(from_addr, to_addr, asset, qty)
+        else:
+            return self.proxy.issuemore(from_addr, to_addr, asset, qty, min_nat, data )
+        
+    
+    def listassets(self):
+        """
+        Returns the list of assets created
+        """
+        return [AssetInfo(**x) for x in 
+                self.proxy.listassets()]
+    
+    
+    
     def getaddresses(self):
         """
         Returns a list of the addresses in this node
