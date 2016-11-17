@@ -624,7 +624,7 @@ class BitcoinConnection(object):
 
 # Multichain Asset management
     
-    def issue(self, address, name, qty=0, data=None):
+    def issue(self, address, name,data=None):
         """
         Create and issue asset qty
         """
@@ -633,6 +633,7 @@ class BitcoinConnection(object):
         asset["open"] = True 
         units=1 
         min_nat=0
+        qty=0
         if data is None:
             return self.proxy.issue(address, asset, qty)
         else:
@@ -650,7 +651,7 @@ class BitcoinConnection(object):
             return self.proxy.issuemore(address, asset, qty, min_nat, data )
         
         
-    def issuefrom(self, from_addr, to_addr, name, qty=0, data=None):
+    def issuefrom(self, from_addr, to_addr, name, data=None):
         """
         Create asset from specified address
         """
@@ -659,6 +660,7 @@ class BitcoinConnection(object):
         asset["open"] = True 
         units=1 
         min_nat=0
+        qty=0
         if data is None:
             return self.proxy.issuefrom(from_addr, to_addr, asset, qty)
         else:
